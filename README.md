@@ -22,3 +22,64 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+# テーブル設計
+
+## users テーブル
+
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| name               | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+
+### Association
+
+- has_many :items
+- has_one  :buy_user
+
+
+## buy_users テーブル
+
+| Column      | Type      | Options                        |
+| ----------- | --------- | ------------------------------ |
+| card_number | integer   | null: false                    |
+| expiry      | integer   | null: false                    |
+| code        | integer   | null: false                    |
+| adress      | string    | null: false                    |
+| user        | reference | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+
+
+## items テーブル
+
+| Column             | Type      | Options                        |
+| ------------------ | --------- | ------------------------------ |
+| item_name          | string    | null: false                    |
+| text               | text      | null: false                    |
+| category           | string    | null: false                    |
+| start_area         | string    | null: false                    |
+| encrypted_password | string    | null: false                    |
+| days               | string    | null: false                    |
+| user               | reference | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- has_many   :comments
+
+
+## commentsテーブル
+
+| Column | Type      | Options                        |
+| ------ | --------- | ------------------------------ |
+| text   | text      | null: false                    |
+| item   | reference | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :item
