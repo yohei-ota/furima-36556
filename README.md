@@ -42,8 +42,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_many :bought_log
-- has_one  :bought_user
+- has_many :bought_logs
 
 
 ## bought_users テーブル
@@ -56,24 +55,25 @@ Things you may want to cover:
 | address        | string    | null: false                    |
 | building       | string    |                                |
 | phone_number   | string    | null: false                    |
-| user_id        | reference | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
+- has_many   :bought_logs
 
 
 ## bought_logs テーブル
 
-| Column  | Type      | Options                        |
-| ------- | --------- | ------------------------------ |
-| item_id | reference | null: false, foreign_key: true |
-| user_id | reference | null: false, foreign_key: true |
+| Column         | Type      | Options                        |
+| -------------- | --------- | ------------------------------ |
+| item_id        | reference | null: false, foreign_key: true |
+| user_id        | reference | null: false, foreign_key: true |
+| bought_user_id | reference | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :item
+- belongs_to :user
+- belongs_to :bought_user
 
 
 ## items テーブル
