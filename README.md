@@ -58,7 +58,7 @@ Things you may want to cover:
 
 ### Association
 
-- has_many   :bought_logs
+- has_one :bought_log
 
 
 ## bought_logs テーブル
