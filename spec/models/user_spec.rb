@@ -44,6 +44,11 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
+      it "emailに@が含まれていなければ登録できない" do
+        @user.email = "abc"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
       it "passwordが空では登録できない" do
         @user.password = ""
         @user.valid?
@@ -93,11 +98,23 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
-      it "passwordが英字か数字どちらかだけだと登録できない" do
+      it "passwordが数字のみでは登録できない" do
         @user.password = "123456"
         @user.password_confirmation = "123456"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて入力してください")
+        expect(@user.errors.full_messages).to include("Password には半角英数字で入力してください")
+      end
+      it "passwordが英字のみでは登録できない" do
+        @user.password = "abcdef"
+        @user.password_confirmation = "abcdef"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には半角英数字で入力してください")
+      end
+      it "passwordが全角だと登録できない" do
+        @user.password = "１２３ａｂｃ"
+        @user.password_confirmation = "１２３ａｂｃ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には半角英数字で入力してください")
       end
       it "first_nameに漢字かひらがなかカタカナが存在しないと登録できない" do
         @user.first_name = "yamada"
