@@ -6,9 +6,9 @@ class Item < ApplicationRecord
   belongs_to :day
   belongs_to :status
 
-  belongs_to :users
+  belongs_to       :user
   has_one_attached :image
-
-  validates :area_id, :category_id, :cost_id, :day_id, :status_id, :item_name, :text, :price, presence: true
-  validates :area_id, :category_id, :cost_id, :day_id, :status_id, numericality: { other_than: 1 , message: "を正しく入力してください"}
+  
+  validates :area_id, :category_id, :cost_id, :days_id, :status_id, :item_name, :text, :price, :image, presence: true
+  validates :area_id, :category_id, :cost_id, :days_id, :status_id, numericality: { other_than: 1 , message: "を正しく入力してください"}
 end
