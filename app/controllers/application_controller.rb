@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!, only: [:new]
   before_action :configure_pemitted_parameters, if: :devise_controller?
 
   private
