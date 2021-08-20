@@ -11,4 +11,7 @@ class User < ApplicationRecord
   validates_format_of :first_name, :last_name, with: NAME_REGEX, message: "には漢字・ひらがな・カタカナを入力してください"
   NAME_KANA_REGEX = /\A[ァ-ヶー]+\z/.freeze
   validates_format_of :first_name_kana, :last_name_kana, with: NAME_KANA_REGEX, message: "にはカタカナを入力してください"
+
+  has_many :items
+
 end
