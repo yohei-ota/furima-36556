@@ -107,6 +107,21 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be an integer")
       end
+      it "priceが全角数字だと出品できない" do
+        @item.price = "３００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it "priceが半角英数字混合だと出品できない" do
+        @item.price = "123abc"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it "priceが半角英字だと出品できない" do
+        @item.price = "abc"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
       it "紐づくuserが存在しないと出品できない" do
         @item.user = nil
         @item.valid?
