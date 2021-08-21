@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  before_action :redirect_root, only: [:edit, :update]
+  before_action :redirect_root, only: [:edit, :update, :destroy]
   
   def index
     @items = Item.order("id DESC")
