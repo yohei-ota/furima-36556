@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
 
 
   def edit
+    # 売却済みの条件分岐は商品購入機能実装の後に実装
     @item = Item.find(params[:id])
     unless user_signed_in? && current_user.id == @item.user_id
       redirect_to root_path
