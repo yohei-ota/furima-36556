@@ -58,7 +58,7 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :bought_log
+- belongs_to :bought_log
 
 
 ## bought_logs テーブル
@@ -73,7 +73,7 @@ Things you may want to cover:
 
 - belongs_to :item
 - belongs_to :user
-- belongs_to :bought_user
+- has_one    :bought_user
 
 
 ## items テーブル
