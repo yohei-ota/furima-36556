@@ -50,7 +50,7 @@ Things you may want to cover:
 | Column         | Type      | Options                        |
 | -------------- | --------- | ------------------------------ |
 | postal_code    | string    | null: false                    |
-| area_id        | string    | null: false                    |
+| area_id        | integer   | null: false                    |
 | municipalities | string    | null: false                    |
 | address        | string    | null: false                    |
 | building       | string    |                                |
