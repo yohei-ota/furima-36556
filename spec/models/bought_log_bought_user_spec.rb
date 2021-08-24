@@ -84,6 +84,11 @@ RSpec.describe BoughtLogBoughtUser, type: :model do
         @log.valid?
         expect(@log.errors.full_messages).to include("Phone number を正しく入力してください")
       end
+      it "tokenが空だと購入できない" do
+        @log.token = ""
+        @log.valid?
+        expect(@log.errors.full_messages).to include("Token can't be blank")
+      end
       it "紐づくitem_idが存在しないと購入できない" do
         @log.item_id = nil
         @log.valid?
