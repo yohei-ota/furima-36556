@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
   def create
     @bought_log_bought_user = BoughtLogBoughtUser.new(bought_log_params)
     if @bought_log_bought_user.valid?
+      P
       @bought_log_bought_user.save
       redirect_to root_path
     else
@@ -21,7 +22,7 @@ class OrdersController < ApplicationController
   private
 
   def bought_log_params
-    params.require(:bought_log_bought_user).permit(:postal_code, :area_id, :munucipalities, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:bought_log_bought_user).permit(:postal_code, :area_id, :munucipalities, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 end
 

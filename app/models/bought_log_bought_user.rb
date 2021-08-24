@@ -1,6 +1,6 @@
 class BoughtLogBoughtUser
   include ActiveModel::Model
-  attr_accessor :item_id, :bought_log_id, :user_id, :postal_code, :area_id, :munucipalities, :address, :building, :phone_number
+  attr_accessor :item_id, :bought_log_id, :user_id, :postal_code, :area_id, :munucipalities, :address, :building, :phone_number, :token
 
   with_options presence: true do
     validates :munucipalities, :address, :item_id, :user_id
