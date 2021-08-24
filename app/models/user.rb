@@ -13,5 +13,5 @@ class User < ApplicationRecord
   validates_format_of :first_name_kana, :last_name_kana, with: NAME_KANA_REGEX, message: "にはカタカナを入力してください"
 
   has_many :items
-
+  has_many :bought_logs
 end

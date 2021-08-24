@@ -3,11 +3,26 @@ class OrdersController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-  end
-
-  def new
+    @bought_log_bought_user = BoughtLogBoughtUser.new
   end
 
   def create
+    @bought_log_bought_user = BoughtLogBoughtUser.new(bought_log_params)
+    if @bought_log_bought_user.valid?
+      @bought_log_bought_user.save
+      redirect_to root_path
+    else
+      @item = Item.find(params[:item_id])
+      @bought_log_bought_user = BoughtLogBoughtUser.new
+      render :index
+    end
+  end
+
+
+  private
+
+  def bought_log_params
+    params.require(:bought_log_bought_user).permit(:postal_code, :area_id, :munucipalities, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 end
+

@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :status
 
   belongs_to       :user
+  has_one          :bought_log
   has_one_attached :image
   
   validates :area_id, :category_id, :cost_id, :day_id, :status_id, :item_name, :text, :price, :image, presence: true
