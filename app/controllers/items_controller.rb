@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :redirect_root, only: [:edit, :update, :destroy]
   before_action :redirect_root_bought, only: [:edit,:update, :destroy]
 
-
   def index
     @items = Item.order("id DESC")
   end
@@ -13,7 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    item_find
     if @item.save
       redirect_to root_path
     else
@@ -22,7 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    item_find
   end
 
 
@@ -38,8 +37,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
+    item_find
+    @item.destroy
     redirect_to root_path
   end
 
@@ -50,16 +49,13 @@ class ItemsController < ApplicationController
   end
 
   def redirect_root
-    @item = Item.find(params[:id])
-    unless current_user.id == @item.user_id
+    item_find
+    unless current_user.id == @item.user_id || @item.bought_log.blank?
       redirect_to root_path
     end
   end
 
-  def redirect_root_bought
+  def item_find
     @item = Item.find(params[:id])
-    if @item.bought_log.present?
-      redirect_to root_path
-    end
   end
 end
