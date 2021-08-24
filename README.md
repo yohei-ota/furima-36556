@@ -55,6 +55,7 @@ Things you may want to cover:
 | address        | string    | null: false                    |
 | building       | string    |                                |
 | phone_number   | string    | null: false                    |
+| bought_log_id  | reference | null: false, foreign_key: true |
 
 ### Association
 
@@ -67,7 +68,6 @@ Things you may want to cover:
 | -------------- | --------- | ------------------------------ |
 | item_id        | reference | null: false, foreign_key: true |
 | user_id        | reference | null: false, foreign_key: true |
-| bought_user_id | reference | null: false, foreign_key: true |
 
 ### Association
 
