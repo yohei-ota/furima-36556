@@ -3,7 +3,7 @@ class BoughtLogBoughtUser
   attr_accessor :item_id, :bought_log_id, :user_id, :postal_code, :area_id, :munucipalities, :address, :building, :phone_number, :token
 
   with_options presence: true do
-    validates :munucipalities, :address, :item_id, :user_id
+    validates :munucipalities, :address, :item_id, :user_id, :token
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
     validates :phone_number, format: { with: /\d{10,11}/, message: "を正しく入力してください" }
   end
