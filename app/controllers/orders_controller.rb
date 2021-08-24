@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
   end
 
 
-  # private
+  private
 
   def bought_log_params
     params.require(:bought_log_bought_user).permit(:postal_code, :area_id, :munucipalities, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
