@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
   def create
     @bought_log_bought_user = BoughtLogBoughtUser.new(bought_log_params)
     if @bought_log_bought_user.valid?
-      P
       @bought_log_bought_user.save
       redirect_to root_path
     else
