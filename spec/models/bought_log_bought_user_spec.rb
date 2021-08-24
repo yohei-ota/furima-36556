@@ -100,8 +100,5 @@ RSpec.describe BoughtLogBoughtUser, type: :model do
         expect(@log.errors.full_messages).to include("User can't be blank")
       end
     end
-
-
-
   end
 end
