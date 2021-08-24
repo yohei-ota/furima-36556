@@ -27,7 +27,6 @@ class ItemsController < ApplicationController
 
 
   def edit
-    # 売却済みの条件分岐は商品購入機能実装の後に実装
   end
 
   def update
