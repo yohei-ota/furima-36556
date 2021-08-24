@@ -5,7 +5,7 @@ class BoughtLogBoughtUser
   with_options presence: true do
     validates :munucipalities, :address, :item_id, :user_id, :token
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
-    validates :phone_number, format: { with: /\d{10,11}/, message: "を正しく入力してください" }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "を正しく入力してください" }
   end
   validates :area_id, numericality: { other_than: 1 , message: "を正しく入力してください" }
   
