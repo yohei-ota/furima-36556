@@ -1,5 +1,5 @@
 const pay = () => {
-  Payjp.setPublicKey("環境変数化の時に記述");
+  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
   const submit = document.getElementById("button");
   submit.addEventListener("click", (e) => {
     e.preventDefault();

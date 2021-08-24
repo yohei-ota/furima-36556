@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "環境変数化の時に記述"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,
       card: @bought_log_bought_user.token,
