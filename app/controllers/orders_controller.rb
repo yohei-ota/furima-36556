@@ -3,19 +3,16 @@ class OrdersController < ApplicationController
   before_action :redirect_root
 
   def index
-    @item = Item.find(params[:item_id])
     @bought_log_bought_user = BoughtLogBoughtUser.new
   end
 
   def create
     @bought_log_bought_user = BoughtLogBoughtUser.new(bought_log_params)
-    @item = Item.find(params[:item_id])
     if @bought_log_bought_user.valid?
       pay_item
       @bought_log_bought_user.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
       render :index
     end
   end
