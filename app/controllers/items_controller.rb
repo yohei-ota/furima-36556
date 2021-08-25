@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :redirect_root, only: [:edit, :update, :destroy]
-  before_action :item_find, only: [:create, :show, :destroy]
+  before_action :item_find, only: [:show, :destroy]
 
   def index
     @items = Item.order("id DESC")
@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
