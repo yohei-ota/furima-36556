@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :redirect_root, only: [:edit, :update, :destroy]
-  
+  before_action :item_find, only: [:create, :show, :destroy]
+
   def index
     @items = Item.order("id DESC")
   end
@@ -11,7 +12,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
@@ -20,12 +20,10 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
 
   def edit
-    # 売却済みの条件分岐は商品購入機能実装の後に実装
   end
 
   def update
@@ -37,8 +35,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
+    @item.destroy
     redirect_to root_path
   end
 
@@ -49,9 +46,13 @@ class ItemsController < ApplicationController
   end
 
   def redirect_root
-    @item = Item.find(params[:id])
-    unless current_user.id == @item.user_id
+    item_find
+    if @item.bought_log.present? || current_user.id != @item.user_id
       redirect_to root_path
     end
+  end
+
+  def item_find
+    @item = Item.find(params[:id])
   end
 end

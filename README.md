@@ -50,15 +50,16 @@ Things you may want to cover:
 | Column         | Type      | Options                        |
 | -------------- | --------- | ------------------------------ |
 | postal_code    | string    | null: false                    |
-| area_id        | string    | null: false                    |
+| area_id        | integer   | null: false                    |
 | municipalities | string    | null: false                    |
 | address        | string    | null: false                    |
 | building       | string    |                                |
 | phone_number   | string    | null: false                    |
+| bought_log_id  | reference | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :bought_log
+- belongs_to :bought_log
 
 
 ## bought_logs テーブル
@@ -67,13 +68,12 @@ Things you may want to cover:
 | -------------- | --------- | ------------------------------ |
 | item_id        | reference | null: false, foreign_key: true |
 | user_id        | reference | null: false, foreign_key: true |
-| bought_user_id | reference | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :item
 - belongs_to :user
-- belongs_to :bought_user
+- has_one    :bought_user
 
 
 ## items テーブル
