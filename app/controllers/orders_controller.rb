@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :redirect_root
+  before_action :redirect_root, except: :thank
 
   def index
     @bought_log_bought_user = BoughtLogBoughtUser.new
@@ -11,10 +11,14 @@ class OrdersController < ApplicationController
     if @bought_log_bought_user.valid?
       pay_item
       @bought_log_bought_user.save
-      redirect_to root_path
+      redirect_to thank_item_orders_path
     else
       render :index
     end
+  end
+
+  def thank
+    @item = Item.find(params[:item_id])
   end
 
 
