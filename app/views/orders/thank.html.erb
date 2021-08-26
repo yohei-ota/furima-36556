@@ -1,0 +1,29 @@
+<%= render "shared/second-header"%>
+
+<div class='transaction-contents'>
+  <div class='transaction-main'>
+    <h1 class='transaction-title-text'>
+      ご購入ありがとうございました！
+    </h1>
+    <%# 購入内容の表示 %>
+    <div class='buy-item-info'>
+      <%= image_tag @item.image, class: 'buy-item-img' %>
+        <h2 class='buy-item-name'>
+          <%= @item.item_name %>
+        </h2>
+    </div>
+    <%# /購入内容の表示 %>
+    <%# 発送日のお知らせ %>
+    <div class='item-payment'>
+      <h1 class='item-payment-day'>
+        <%= "ご購入いただいた商品は#{@item.day.name}致します" %>
+      </h1>
+    </div>
+    <%# /発送日のお知らせ %>
+    <div class="top-page">
+      <%= link_to "トップページへ戻る", root_path %>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/second-footer"%>
